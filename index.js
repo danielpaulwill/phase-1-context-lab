@@ -46,8 +46,8 @@ function createTimeOutEvent(dateStamp) {
     return hoursWorked
   };
   
-  function wagesEarnedOnDate(employeeRecord, date) {
-  let payOwed = hoursWorkedOnDate(employeeRecord, date) * employeeRecord.payPerHour
+  function wagesEarnedOnDate(date) {
+  let payOwed = hoursWorkedOnDate(date) * this.payPerHour
   return payOwed
   };
 
