@@ -126,7 +126,7 @@ function createTimeOutEvent(dateStamp) {
                         
                         
 function findEmployeeByFirstName(srcArray, firstNameString) {
-let employee = this.find(firstName => this.firstName === firstNameString)
+let employee = srcArray.find(firstName => this.firstName === firstNameString)
 return employee
 }
 
