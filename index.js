@@ -47,108 +47,96 @@ function createTimeOutEvent(dateStamp) {
   };
   
   function wagesEarnedOnDate(date) {
-  let payOwed = hoursWorkedOnDate(this, date) * this.payPerHour
+  let payOwed = hoursWorkedOnDate.call(this, date) * this.payPerHour
   return payOwed
   };
 
-
-
-
-
-/*
- We're giving you this function. Take a look at it, you might see some usage
- that's new and different. That's because we're avoiding a well-known, but
- sneaky bug that we'll cover in the next few lessons!
-
- As a result, the lessons for this function will pass *and* it will be available
- for you to use if you need it!
- */
-
-const allWagesFor = function () {
-  const eligibleDates = this.timeInEvents.map(function (e) {
-    return e.date
-  })
   
-  const payable = eligibleDates.reduce(function (memo, d) {
-        return memo + wagesEarnedOnDate.call(this, d)
+  const allWagesFor = function () {
+    const eligibleDates = this.timeInEvents.map(function (e) {
+      return e.date
+    })
+    
+    const payable = eligibleDates.reduce(function (memo, d) {
+      return memo + wagesEarnedOnDate.call(this, d)
     }.bind(this), 0) // <== Hm, why did we need to add bind() there? We'll discuss soon!
-
+    
     return payable
+  }
+  
+  
+  
+  
+  // const employeeRecordArray = [
+    // employeeRecord1 = {
+      //   firstName: 'Garfield',
+      //   familyName: 'Arbuckle',
+      //   title: 'Cat',
+      //   payPerHour: 3,
+      //   timeInEvents: [{
+        //     type: "TimeIn",
+        //     hour: 1100,
+        //     date: "2014-02-28"
+        //   },
+        //   {
+          //     type: "TimeIn",
+          //     hour: 1000,
+          //     date: "2014-03-28"
+          //   }],
+          //   timeOutEvents: [{
+            //     type: "TimeOut",
+            //     hour: 1400,
+            //     date: "2014-02-28"
+            //   },
+            //   {
+              //     type: "TimeOut",
+              //     hour: 1500,
+              //     date: "2014-03-28"
+              //   }]
+              // },
+              // employeeRecord2 = {
+                //   firstName: 'Odie',
+                //   familyName: 'Arbuckle',
+                //   title: 'Dog',
+                //   payPerHour: 5,
+                //   timeInEvents: [{
+                  //     type: "TimeIn",
+                  //     hour: 1100,
+                  //     date: "2014-02-28"
+                  //   },
+                  //   {
+                    //     type: "TimeIn",
+                    //     hour: 1000,
+                    //     date: "2014-03-28"
+                    //   }],
+                    //   timeOutEvents: [{
+                      //     type: "TimeOut",
+                      //     hour: 1400,
+                      //     date: "2014-02-28"
+                      //   },
+                      //   {
+                        //     type: "TimeOut",
+                        //     hour: 1500,
+                        //     date: "2014-03-28"
+                        //   }]
+                        // }
+                        // ];
+                        
+                        
+                        
+                        
+function findEmployeeByFirstName(srcArray, firstNameString) {
+let employee = srcArray.find(firstName => this.firstName === firstNameString)
+return employee
 }
 
-
-
-
-
-
-
-
-
-
-
-// const employeeRecordArray = [
-// employeeRecord1 = {
-//   firstName: 'Garfield',
-//   familyName: 'Arbuckle',
-//   title: 'Cat',
-//   payPerHour: 3,
-//   timeInEvents: [{
-//     type: "TimeIn",
-//     hour: 1100,
-//     date: "2014-02-28"
-//   },
-//   {
-//     type: "TimeIn",
-//     hour: 1000,
-//     date: "2014-03-28"
-//   }],
-//   timeOutEvents: [{
-//     type: "TimeOut",
-//     hour: 1400,
-//     date: "2014-02-28"
-//   },
-//   {
-//     type: "TimeOut",
-//     hour: 1500,
-//     date: "2014-03-28"
-//   }]
-// },
-// employeeRecord2 = {
-//   firstName: 'Odie',
-//   familyName: 'Arbuckle',
-//   title: 'Dog',
-//   payPerHour: 5,
-//   timeInEvents: [{
-//     type: "TimeIn",
-//     hour: 1100,
-//     date: "2014-02-28"
-//   },
-//   {
-//     type: "TimeIn",
-//     hour: 1000,
-//     date: "2014-03-28"
-//   }],
-//   timeOutEvents: [{
-//     type: "TimeOut",
-//     hour: 1400,
-//     date: "2014-02-28"
-//   },
-//   {
-//     type: "TimeOut",
-//     hour: 1500,
-//     date: "2014-03-28"
-//   }]
-// }
-// ];
-
-
-// function calculatePayroll(array) {
-//   let allEmployeesWages = []
-//   array.map(employee => {
-//     let employeeWages = allWagesFor(employee)
-//     allEmployeesWages.push(employeeWages)
-//   })
-//   let reducer = (previousValue, currentValue) => previousValue + currentValue;
-//   let allWages = allEmployeesWages.reduce(reducer)
-//   return allWages
-// }
+function calculatePayroll() {
+let allEmployeesWages = []
+this.map(employee => {
+  let employeeWages = allWagesFor(employee)
+allEmployeesWages.push(employeeWages)
+})
+let reducer = (previousValue, currentValue) => previousValue + currentValue;
+let allWages = allEmployeesWages.reduce(reducer)
+return allWages
+}
