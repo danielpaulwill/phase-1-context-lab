@@ -64,6 +64,11 @@ function createTimeOutEvent(dateStamp) {
     return payable
   }
   
+function findEmployeeByFirstName(srcArray, firstNameString) {
+let employee = srcArray.find(record => record.firstName === firstNameString)
+return employee
+}
+  
   
   
   
@@ -124,16 +129,11 @@ function createTimeOutEvent(dateStamp) {
                         
                         
                         
-                        
-function findEmployeeByFirstName(srcArray, firstNameString) {
-let employee = srcArray.find(firstName => this.firstName === firstNameString)
-return employee
-}
 
-function calculatePayroll() {
+function calculatePayroll(array) {
 let allEmployeesWages = []
-this.map(employee => {
-  let employeeWages = allWagesFor(employee)
+array.map(employee => {
+  let employeeWages = allWagesFor.call(employee)
 allEmployeesWages.push(employeeWages)
 })
 let reducer = (previousValue, currentValue) => previousValue + currentValue;
